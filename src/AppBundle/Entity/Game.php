@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Game
 {
-    const MAX_PLAYERS = 2;
+    const NUM_PLAYERS = 2;
     /**
      * @var int
      *
@@ -149,13 +149,13 @@ class Game
      */
     public function addPlayer(Player $players)
     {
-        if ($this->players->count() < self::MAX_PLAYERS) {
+        if ($this->players->count() < self::NUM_PLAYERS) {
             $this->players[] = $players;
-            if ($this->players->count() == self::MAX_PLAYERS) {
+            if ($this->players->count() == self::NUM_PLAYERS) {
                 $this->setAvailable(false);
             }
         } else {
-            throw new \InvalidArgumentException("This is a " . self::MAX_PLAYERS . " players game");
+            throw new \InvalidArgumentException("This is a " . self::NUM_PLAYERS . " players game");
         }
 
         return $this;

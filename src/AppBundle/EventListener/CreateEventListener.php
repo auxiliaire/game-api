@@ -3,6 +3,7 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Move;
+use AppBundle\Entity\Player;
 use AppBundle\Game\Logic;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManager;
@@ -26,12 +27,16 @@ class CreateEventListener
     public function onPostCreate(DataEvent $event)
     {
         $data = $event->getData();
+        //$resource = $event->getResource(); // Get the related instance of Dunglas\ApiBundle\Api\ResourceInterface
 
+        $gameLogic = new Logic($this->em);
         switch (true) {
+            case ($data instanceof Player):
+                // Updating availability:
+                $gameLogic->updateAvailability($data);
+                break;
             case ($data instanceof Move):
-                //$resource = $event->getResource(); // Get the related instance of Dunglas\ApiBundle\Api\ResourceInterface
                 // Updating game:
-                $gameLogic = new Logic($this->em);
                 $gameLogic->updateGame($data);
                 break;
         }

@@ -290,9 +290,9 @@ class Player
             $this->setCanStart(true);
         } elseif ($playerCount == 1) {
             $this->setCanJoin(true);
-        } elseif ($playerCount >= $game::MAX_PLAYERS) {
+        } elseif ($playerCount >= $game::NUM_PLAYERS) {
             $playerCount++;
-            throw new \InvalidArgumentException("This is a " . $game::MAX_PLAYERS . " players game (you'd be player nr. {$playerCount}).");
+            throw new \InvalidArgumentException("This is a " . $game::NUM_PLAYERS . " players game (you'd be player nr. {$playerCount}).");
         }
 
         return $this;
@@ -364,7 +364,7 @@ class Player
     /**
      * @return ArrayCollection
      */
-    public function getOpponents()
+    public function retrieveOpponents()
     {
         $player = $this;
         return $this->getGame()->getPlayers()->filter(function (Player $item) use ($player) {
@@ -377,6 +377,6 @@ class Player
      */
     public function getOpponent()
     {
-        return $this->getOpponents()->first();
+        return $this->retrieveOpponents()->first();
     }
 }

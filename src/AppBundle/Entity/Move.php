@@ -30,8 +30,8 @@ class Move
      * @Assert\NotBlank()
      * @Assert\Type(type="integer")
      * @Assert\Range(
-     *     min="-1",
-     *     max="1"
+     *     min="2",
+     *     max="100"
      * )
      */
     protected $number;
@@ -121,9 +121,6 @@ class Move
      */
     public function setPlayer(Player $player)
     {
-        if (!($player->getCanStart() || $player->getHasTurn())) {
-            throw new \InvalidArgumentException("This move is not allowed for player!");
-        }
         $this->player = $player;
 
         return $this;
@@ -144,9 +141,18 @@ class Move
         return $this->getPlayer()->getGame()->getCurrentNumber() + $this->getStep();
     }
 
+    private $nextNumber = null;
+
     public function getNextNumber()
     {
-        return ($this->getCalculatedNumber() / self::DIVIDER);
+        if ($this->nextNumber === null) {
+            if (($this->getCalculatedNumber() % self::DIVIDER) != 0) {
+                $this->nextNumber = $this->getNumber();
+            } else {
+                $this->nextNumber = ($this->getCalculatedNumber() / self::DIVIDER);
+            }
+        }
+        return $this->nextNumber;
     }
 
     /**
@@ -154,7 +160,14 @@ class Move
      */
     public function prePersist()
     {
-        if ($this->getPlayer()->getHasTurn()) {
+        $player = $this->getPlayer();
+        if ($player->getGame()->getOver()) {
+            throw new \InvalidArgumentException("The game is over!");
+        } elseif (!$player->getOpponent()) {
+            throw new \InvalidArgumentException("At least " . Game::NUM_PLAYERS . " player is required to play this game!");
+        } elseif (!($player->getCanStart() || $player->getHasTurn())) {
+            throw new \InvalidArgumentException("This move is not allowed for player!");
+        } elseif ($player->getHasTurn()) {
             if (($this->getCalculatedNumber() % self::DIVIDER) != 0) {
                 throw new \InvalidArgumentException("Step adding to the current number should result a number dividable by " . self::DIVIDER . " without modulus!");
             }
