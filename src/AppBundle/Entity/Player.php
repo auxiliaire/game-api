@@ -285,6 +285,15 @@ class Player
     public function setGame(Game $game)
     {
         $this->game = $game;
+        $playerCount = $game->getPlayers()->count();
+        if ($playerCount == 0) {
+            $this->setCanStart(true);
+        } elseif ($playerCount == 1) {
+            $this->setCanJoin(true);
+        } elseif ($playerCount >= $game::MAX_PLAYERS) {
+            $playerCount++;
+            throw new \InvalidArgumentException("This is a " . $game::MAX_PLAYERS . " players game (you'd be player nr. {$playerCount}).");
+        }
 
         return $this;
     }
@@ -330,5 +339,44 @@ class Player
     public function getMoves()
     {
         return $this->moves;
+    }
+
+    public function manipulateCanJoin($canJoin)
+    {
+        return $this->setCanJoin($canJoin);
+    }
+
+    public function manipulateCanStart($canStart)
+    {
+        return $this->setCanStart($canStart);
+    }
+
+    public function manipulateHasTurn($hasTurn)
+    {
+        return $this->setHasTurn($hasTurn);
+    }
+
+    public function manipulateIsWinner($isWinner)
+    {
+        return $this->setIsWinner($isWinner);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOpponents()
+    {
+        $player = $this;
+        return $this->getGame()->getPlayers()->filter(function (Player $item) use ($player) {
+            return ($item->getId() != $player->getId());
+        });
+    }
+
+    /**
+     * @return Player|null
+     */
+    public function getOpponent()
+    {
+        return $this->getOpponents()->first();
     }
 }

@@ -15,5 +15,6 @@ services:
         tags:      [ { name: "api.resource" } ]
 
     create_event_listener:
-        class: "AppBundle\EventListener\CreateEventListener"
-        tags:  [ { name: "kernel.event_listener", event: "api.pre_create", method: "onPreCreate" } ]
+        class: 'AppBundle\EventListener\CreateEventListener'
+        tags:  [ { name: "kernel.event_listener", event: "api.post_create", method: "onPostCreate" } ]
+        arguments: [ '@doctrine.orm.entity_manager' ]

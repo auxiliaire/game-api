@@ -180,4 +180,20 @@ class Game
     {
         return $this->players;
     }
+
+    public function manipulateAvailable($available)
+    {
+        return $this->setAvailable($available);
+    }
+
+    public function manipulateCurrentNumber($currentNumber)
+    {
+        return $this->setCurrentNumber($currentNumber);
+    }
+
+    public function manipulateOver($over)
+    {
+        return $this->setOver($over);
+    }
+
 }
