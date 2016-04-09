@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -42,4 +41,60 @@ class Move
      */
     protected $player;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set step
+     *
+     * @param integer $step
+     * @return Move
+     */
+    public function setStep($step)
+    {
+        $this->step = $step;
+
+        return $this;
+    }
+
+    /**
+     * Get step
+     *
+     * @return integer 
+     */
+    public function getStep()
+    {
+        return $this->step;
+    }
+
+    /**
+     * Set player
+     *
+     * @param \AppBundle\Entity\Player $player
+     * @return Move
+     */
+    public function setPlayer(Player $player)
+    {
+        $this->player = $player;
+
+        return $this;
+    }
+
+    /**
+     * Get player
+     *
+     * @return \AppBundle\Entity\Player 
+     */
+    public function getPlayer()
+    {
+        return $this->player;
+    }
 }

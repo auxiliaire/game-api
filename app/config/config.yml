@@ -48,8 +48,6 @@ doctrine:
         #   3. Uncomment next line:
         #     path:     "%database_path%"
         path:     "%database_path%"
-        mapping_types:
-            enum: string
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
