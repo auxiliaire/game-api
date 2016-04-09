@@ -1,0 +1,24 @@
+# This file is a "template" of what your parameters.yml file should look like
+parameters:
+    database_driver: pdo_sqlite
+    #database_host: 127.0.0.1
+    #database_port: null
+    #database_name: symfony
+    database_user: sometest
+    database_password: sometest
+    database_path: "%kernel.root_dir%/Resources/sometest.db3"
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+
+    cors_allow_origin: http://localhost:9000
+
+    api_name:          'Game API'
+    api_description:   'Game API'
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            ThisTokenIsNotSoSecretChangeIt
