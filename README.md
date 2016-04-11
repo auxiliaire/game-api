@@ -20,6 +20,7 @@ Features
 How to use it?
 --------------
 
-Run `app/console server:run` to start Symfony's built in webserver. It will listen on localhost at port 8000 by default. Try the online documentation at (http://localhost:8000/doc) to check.
+1. Run `app/console server:run` to start Symfony's built in webserver. It will listen on localhost at port 8000 by default. Try the online documentation at (http://localhost:8000/doc) to check.
+2. Run two interactive CLI clients (with auto feature). See there: (https://github.com/auxiliaire/game-client).
 
 More info on Api Platform at (https://api-platform.com).
