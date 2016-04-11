@@ -138,7 +138,7 @@ class Move
 
     public function getCalculatedNumber()
     {
-        return $this->getPlayer()->getGame()->getCurrentNumber() + $this->getStep();
+        return $this->getNumber() + $this->getStep();
     }
 
     private $nextNumber = null;
@@ -146,11 +146,7 @@ class Move
     public function getNextNumber()
     {
         if ($this->nextNumber === null) {
-            if (($this->getCalculatedNumber() % self::DIVIDER) != 0) {
-                $this->nextNumber = $this->getNumber();
-            } else {
-                $this->nextNumber = ($this->getCalculatedNumber() / self::DIVIDER);
-            }
+            $this->nextNumber = ($this->getCalculatedNumber() / self::DIVIDER);
         }
         return $this->nextNumber;
     }

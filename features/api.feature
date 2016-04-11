@@ -180,7 +180,7 @@ Feature: API
       "step": 0,
       "player": "/players/1",
       "calculatedNumber": 56,
-      "nextNumber": 56
+      "nextNumber": 18.666666666667
     }
     """
 
@@ -219,7 +219,7 @@ Feature: API
       "number": 56,
       "step": 1,
       "player": "/players/2",
-      "calculatedNumber": 20,
+      "calculatedNumber": 57,
       "nextNumber": 19
     }
     """
@@ -358,7 +358,7 @@ Feature: API
       "number": 19,
       "step": -1,
       "player": "/players/1",
-      "calculatedNumber": 5,
+      "calculatedNumber": 18,
       "nextNumber": 6
     }
     """
@@ -384,7 +384,7 @@ Feature: API
       "number": 6,
       "step": 0,
       "player": "/players/2",
-      "calculatedNumber": 2,
+      "calculatedNumber": 6,
       "nextNumber": 2
     }
     """
@@ -410,7 +410,7 @@ Feature: API
       "number": 2,
       "step": 1,
       "player": "/players/1",
-      "calculatedNumber": 2,
+      "calculatedNumber": 3,
       "nextNumber": 1
     }
     """
