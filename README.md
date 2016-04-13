@@ -29,7 +29,7 @@ Docker support
 --------------
 
 0. Make sure you have docker installed (https://www.docker.com/).
-1. Run `docker-compose build` to create containers based on prefilled configuration.
+1. Run `docker-compose build` in server project root to create containers based on prefilled configuration.
 2. Run `docker-compose up -d` to run server on the background.
 3. Check the server: documentation should be available at (http://127.0.0.1:8000/doc)
 4. To run tests attach to the running server: `docker exec -it "gameapi_php_1" bash`, prompt should change to user "vezir". Now you can run tests as ususal: `bin/behat`.
