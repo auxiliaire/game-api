@@ -24,3 +24,15 @@ How to use it?
 2. Run two interactive CLI clients (with auto feature). See there: (https://github.com/auxiliaire/game-client).
 
 More info on Api Platform at (https://api-platform.com).
+
+Docker support
+--------------
+
+0. Make sure you have docker installed (https://www.docker.com/).
+1. Run `docker-compose build` to create containers based on prefilled configuration.
+2. Run `docker-compose up -d` to run server on the background.
+3. Check the server: documentation should be available at (http://127.0.0.1:8000/doc)
+4. To run tests attach to the running server: `docker exec -it "gameapi_php_1" bash`, prompt should change to user "vezir". Now you can run tests as ususal: `bin/behat`.
+5. Type `exit` to leave docker shell.
+6. See client working. More info at (https://github.com/auxiliaire/game-client).
+6. Run `docker-compose stop` to halt server.
